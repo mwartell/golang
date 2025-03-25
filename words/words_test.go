@@ -1,4 +1,4 @@
-package wordlist
+package words
 
 import (
 	"fmt"
@@ -73,7 +73,7 @@ func BenchmarkFromFile(b *testing.B) {
 
 }
 
-func ExampleWordList() {
+func ExampleWords() {
 	wl, err := FromFile("/usr/share/dict/words")
 	if err != nil {
 		log.Fatal(err)

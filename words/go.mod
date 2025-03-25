@@ -1,4 +1,4 @@
-module mwartell/wordlist
+module mwartell/words
 
 go 1.24.1
 

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"mwartell/wordlist"
+	"mwartell/words"
 
 	"github.com/joho/godotenv"
 )
@@ -17,20 +17,20 @@ func main() {
 	}
 	cacheDir := env["CACHE_DIR"]
 
-	sources := []string{wordlist.SourceAlpha, wordlist.SourceMedium}
+	sources := []string{words.SourceAlpha, words.SourceMedium}
 
 	for _, source := range sources {
-		filename, err := wordlist.CacheWords(source, cacheDir)
+		filename, err := words.CacheWords(source, cacheDir)
 		if err != nil {
 			log.Panic(err)
 			return
 		}
 
-		wl, err := wordlist.FromFile(filename)
+		wl, err := words.FromFile(filename)
 		if err != nil {
 			log.Println()
 		} else {
-			fmt.Printf("Wordlist from %v contains %d words\n", filename, len(wl))
+			fmt.Printf("Wordlist from %v contains %d words\n", filename, wl.Size())
 			fmt.Println(wl[:5])
 		}
 	}

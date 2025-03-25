@@ -1,4 +1,4 @@
-package wordlist
+package words
 
 import "testing"
 

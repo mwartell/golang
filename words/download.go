@@ -1,6 +1,6 @@
 // gather a wordlist from a web source
 
-package wordlist
+package words
 
 import (
 	"fmt"

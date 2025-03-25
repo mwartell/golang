@@ -1,37 +1,38 @@
-// Package wordlist provides a simple word list data structure for learning golang
-package wordlist
+// Package words provides a simple word data structure for learning golang
+package words
 
 import (
 	"bufio"
 	"os"
+	"slices"
 	"strings"
 )
 
-// WordList represents a collection of words loaded from a file
-type WordList []string
+// Words represents a collection of words
+type Words []string
 
 
 
-// FromFile reads a file containing a list of words and returns a WordList.
+// FromFile reads a file containing a words and returns a Words.
 // Each line in the file is treated as a word, with leading and trailing
 // whitespace trimmed. Lines that are empty or start with a '#' character
 // (comments) are ignored.
 //
 // Parameters:
-//   - filename: The path to the file containing the word list.
+//   - filename: The path to the file containing the words.
 //
 // Returns:
-//   - WordList: A slice of strings containing the words from the file.
+//   - Words: a collection of words read from the file.
 //   - error: An error if the file cannot be opened or read.
 //
-func FromFile(filename string) (WordList, error) {
+func FromFile(filename string) (Words, error) {
 	file, err := os.Open(filename)
 	if err != nil {
 		return nil, err
 	}
 	defer file.Close()
 
-	var wl WordList
+	var wl Words
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		word := strings.TrimSpace(scanner.Text())
@@ -44,25 +45,19 @@ func FromFile(filename string) (WordList, error) {
 }
 
 // Contains checks if a word exists in the WordList
-// TODO: this should use a better search algorithm
-func (wl WordList) Contains(word string) bool {
-	for _, w := range wl {
-		if w == word {
-			return true
-		}
-	}
-	return false
+func (wl Words) Contains(word string) bool {
+	return slices.Contains(wl, word)
 }
 
 // Add adds a word to the WordList if it doesn't already exist
-func (wl *WordList) Add(word string) {
+func (wl *Words) Add(word string) {
 	if !wl.Contains(word) {
 		*wl = append(*wl, word)
 	}
 }
 
 // Remove removes a word from the WordList
-func (wl *WordList) Remove(word string) {
+func (wl *Words) Remove(word string) {
 	for i, w := range *wl {
 		if w == word {
 			// Remove the element at index i
@@ -73,6 +68,6 @@ func (wl *WordList) Remove(word string) {
 }
 
 // Size returns the number of words in the WordList
-func (wl WordList) Size() int {
+func (wl Words) Size() int {
 	return len(wl)
 }
