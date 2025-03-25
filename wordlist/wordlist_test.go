@@ -60,14 +60,17 @@ func TestWordList(t *testing.T) {
 	}
 }
 
-func BenchmarkLoading(b *testing.B) {
-	static_path := "words_alpha.txt"
+func BenchmarkFromFile(b *testing.B) {
+	tmpdir := b.TempDir()
+	filename, err := CacheWords(SourceMedium, tmpdir)
+	if err != nil {
+		b.Fatalf("Failed to download wordlist: %v", err)
+	}
 
 
-	// benchmark FromFile call
 	for b.Loop() {
 		wl := NewWordList()
-		err := wl.FromFile(static_path)
+		err := wl.FromFile(filename)
 		if err != nil {
 			b.Fatalf("Failed to load wordlist: %v", err)
 		}
