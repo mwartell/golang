@@ -1,3 +1,4 @@
+// Package wordlist provides a simple word list data structure for learning golang
 package wordlist
 
 import (

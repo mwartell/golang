@@ -5,18 +5,11 @@ package wordlist
 import (
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"net/url"
 	"os"
 	"path/filepath"
 )
-
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
 
 func fileExists(path string) bool {
 	_, err := os.Stat(path)
@@ -30,31 +23,32 @@ func fileExists(path string) bool {
 //   - site: The URL of the site to download the content from.
 //
 // Returns:
-//   - filename: The name of the file where the content is saved.
-//
-// Note: The function assumes the existence of helper functions `check` and `fileExists`
-// for error handling and file existence checking, respectively.
-func cacheWords(site string) (filename string) {
+func cacheWords(site string) (string, error) {
 	u, err := url.Parse(site)
-	check(err)
-	filename = filepath.Base(u.Path)
-	fmt.Println(filename)
+	if err != nil {
+		return "", fmt.Errorf("parsing URL: %w", err)
+	}
 
+	filename := filepath.Base(u.Path)
 	if fileExists(filename) {
-		log.Printf("File %s already exists, skipping download.", filename)
-		return filename
+		return filename, nil
 	}
 
 	resp, err := http.Get(site)
-	check(err)
+	if err != nil {
+		return "", fmt.Errorf("downloading content: %w", err)
+	}
 	defer resp.Body.Close()
 
-	// write the word list to a file
 	file, err := os.Create(filename)
-	check(err)
+	if err != nil {
+		return "", fmt.Errorf("creating file: %w", err)
+	}
 	defer file.Close()
-	_, err = io.Copy(file, resp.Body)
-	check(err)
 
-	return filename
+	if _, err := io.Copy(file, resp.Body); err != nil {
+		return "", fmt.Errorf("writing content: %w", err)
+	}
+
+	return filename, nil
 }
