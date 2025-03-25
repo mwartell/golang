@@ -26,9 +26,12 @@ func main() {
 			return
 		}
 
-		wl := wordlist.NewWordList()
-		wl.FromFile(filename)
-		fmt.Println("Wordlist from", filename)
-		fmt.Println(wl[:5])
+		wl, err := wordlist.FromFile(filename)
+		if err != nil {
+			log.Println()
+		} else {
+			fmt.Printf("Wordlist from %v contains %d words\n", filename, len(wl))
+			fmt.Println(wl[:5])
+		}
 	}
 }

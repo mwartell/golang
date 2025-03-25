@@ -10,28 +10,43 @@ import (
 // WordList represents a collection of words loaded from a file
 type WordList []string
 
-// NewWordList creates a new empty WordList
-func NewWordList() WordList {
-	return WordList{}
-}
 
-// LoadFromFile loads words from a file into the WordList
-func (wl *WordList) FromFile(filename string) error {
+
+// FromFile reads a file containing a list of words and returns a WordList.
+// Each line in the file is treated as a word, with leading and trailing
+// whitespace trimmed. Lines that are empty or start with a '#' character
+// (comments) are ignored.
+//
+// Parameters:
+//   - filename: The path to the file containing the word list.
+//
+// Returns:
+//   - WordList: A slice of strings containing the words from the file.
+//   - error: An error if the file cannot be opened or read.
+//
+// Example usage:
+//   wl, err := FromFile("words.txt")
+//   if err != nil {
+//       log.Fatal(err)
+//   }
+//   fmt.Println(wl)
+func FromFile(filename string) (WordList, error) {
 	file, err := os.Open(filename)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	defer file.Close()
 
+	var wl WordList
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		word := strings.TrimSpace(scanner.Text())
 		if word != "" && !strings.HasPrefix(word, "#") {
-			*wl = append(*wl, word)
+			wl = append(wl, word)
 		}
 	}
 
-	return scanner.Err()
+	return wl, scanner.Err()
 }
 
 // Contains checks if a word exists in the WordList
@@ -66,12 +81,4 @@ func (wl *WordList) Remove(word string) {
 // Size returns the number of words in the WordList
 func (wl WordList) Size() int {
 	return len(wl)
-}
-
-// ToSlice returns all words as a string slice
-func (wl WordList) ToSlice() []string {
-	// Since WordList is already a slice, just return a copy
-	result := make([]string, len(wl))
-	copy(result, wl)
-	return result
 }

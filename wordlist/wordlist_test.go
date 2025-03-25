@@ -11,8 +11,7 @@ func TestWordList(t *testing.T) {
 	file := fs.NewFile(t, "test.txt", fs.WithContent("apple\nbanana\n# comment\ncherry\n\n"))
 	defer file.Remove()
 
-	wl := NewWordList()
-	err := wl.FromFile(file.Path())
+	wl, err := FromFile(file.Path())
 	if err != nil {
 		t.Fatalf("Failed to load wordlist: %v", err)
 	}
@@ -53,11 +52,6 @@ func TestWordList(t *testing.T) {
 	if wl.Contains("apple") {
 		t.Error("Did not expect 'apple' to be in wordlist after removing")
 	}
-
-	words := wl.ToSlice()
-	if len(words) != 3 {
-		t.Errorf("Expected 3 words in slice, got %d", len(words))
-	}
 }
 
 func BenchmarkFromFile(b *testing.B) {
@@ -69,8 +63,7 @@ func BenchmarkFromFile(b *testing.B) {
 
 
 	for b.Loop() {
-		wl := NewWordList()
-		err := wl.FromFile(filename)
+		_, err := FromFile(filename)
 		if err != nil {
 			b.Fatalf("Failed to load wordlist: %v", err)
 		}
