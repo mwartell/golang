@@ -24,12 +24,6 @@ type WordList []string
 //   - WordList: A slice of strings containing the words from the file.
 //   - error: An error if the file cannot be opened or read.
 //
-// Example usage:
-//   wl, err := FromFile("words.txt")
-//   if err != nil {
-//       log.Fatal(err)
-//   }
-//   fmt.Println(wl)
 func FromFile(filename string) (WordList, error) {
 	file, err := os.Open(filename)
 	if err != nil {

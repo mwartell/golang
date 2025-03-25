@@ -1,6 +1,8 @@
 package wordlist
 
 import (
+	"fmt"
+	"log"
 	"testing"
 
 	"gotest.tools/v3/fs"
@@ -69,4 +71,14 @@ func BenchmarkFromFile(b *testing.B) {
 		}
 	}
 
+}
+
+func ExampleWordList() {
+	wl, err := FromFile("/usr/share/dict/words")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(wl.Size())
+	// Output:
+	// 104334
 }

@@ -11,8 +11,6 @@ func TestCacheWords(t *testing.T) {
 	filename, err := CacheWords(SourceMedium, tmpdir)
 	if err != nil {
 		t.Fatalf("Failed to download wordlist: %v", err)
-	} else {
-		t.Logf("Downloaded wordlist to %s in %s", filename, tmpdir)
 	}
 
 	if !fileExists(filename) {
