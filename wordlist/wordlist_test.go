@@ -59,3 +59,18 @@ func TestWordList(t *testing.T) {
 		t.Errorf("Expected 3 words in slice, got %d", len(words))
 	}
 }
+
+func BenchmarkLoading(b *testing.B) {
+	static_path := "words_alpha.txt"
+
+
+	// benchmark FromFile call
+	for b.Loop() {
+		wl := NewWordList()
+		err := wl.FromFile(static_path)
+		if err != nil {
+			b.Fatalf("Failed to load wordlist: %v", err)
+		}
+	}
+
+}
