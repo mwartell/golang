@@ -22,20 +22,19 @@ func TestWordList(t *testing.T) {
 		t.Errorf("Expected 3 words, got %d", wl.Size())
 	}
 
-	if !wl.Contains("apple") {
-		t.Error("Expected 'apple' to be in wordlist")
+	presences := map[string]bool{
+		"apple":  true,
+		"banana": true,
+		"cherry": true,
+		"date":   false,
+		"comment": false,
+		"# comment": false,
 	}
-
-	if !wl.Contains("banana") {
-		t.Error("Expected 'banana' to be in wordlist")
-	}
-
-	if !wl.Contains("cherry") {
-		t.Error("Expected 'cherry' to be in wordlist")
-	}
-
-	if wl.Contains("comment") {
-		t.Error("Did not expect 'comment' to be in wordlist")
+	for target, expected := range presences {
+		presence := map[bool]string{true: "present", false: "absent"}[expected]
+		if wl.Contains(target) != expected {
+				t.Fatalf("Expected %v to be %v", target, presence)
+		}
 	}
 
 	wl.Add("date")
