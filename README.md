@@ -37,3 +37,8 @@ structural pattern matching) are continually added that I've yet to find a use c
 
 The simplicity and the durability of the Go language is no accident, and given
 its intellectual heritage I'm not surprised.
+
+The advisory type annotations have really been a boon to writing correct code in
+Python. Where it really helps is in making use of diverse libraries and optional
+parameter lists that can number twenty or more. The thing is, my maxim prior to
+annotations was "if method tank can't take an object cap, why did you pass it one?";
