@@ -17,6 +17,14 @@ examples.
 
 I've barely scratched the surface of this
 
+**Learn Go with Tests** https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/structs-methods-and-interfaces
+
+A test-driven dev elopment guide that describes many features of the go environment that
+are essential but not obvious through the main documentation. For example
+`go test -bench` benchmarking is presented quite early and `go mod init` is in the
+first section.
+
+
 # thoughts while learning Go
 
 I feel like I'd been seduced by the Syntactic Sugar of Python. I have long thought
