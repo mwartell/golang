@@ -90,3 +90,16 @@ func TestRatchetCloser_AllMismatchedCharacters(t *testing.T) {
 		t.Errorf("Expected exactly one character to change, but %d characters changed", diffCount)
 	}
 }
+
+func TestRatchetCompletion(t *testing.T) {
+	target := "all good things"
+	charset := FromString(target)
+
+	exp, err := NewExperiment("all good things", 1, 0, charset)
+	if err != nil {
+		t.Errorf("Failed to create experiment: %v", err)
+	}
+
+	generations := exp.RatchetSolve()
+	t.Logf("Generations to completion: %d", generations)
+}
