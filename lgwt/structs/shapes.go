@@ -2,7 +2,6 @@ package main
 
 import "math"
 
-
 type Shape interface {
 	Area() float64
 }

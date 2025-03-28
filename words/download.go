@@ -12,17 +12,15 @@ import (
 )
 
 const (
-	SourceAlpha = "https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt"
+	SourceAlpha  = "https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt"
 	SourceMedium = "https://raw.githubusercontent.com/zekenaulty/" +
 		"Dataset-google-10000-english/refs/heads/master/google-10000-english-usa-no-swears-medium.txt"
 )
-
 
 func fileExists(path string) bool {
 	_, err := os.Stat(path)
 	return !os.IsNotExist(err)
 }
-
 
 // CacheWords downloads a file from the specified URL and saves it to the given directory.
 // If the file already exists in the directory, it skips the download and returns the file name.

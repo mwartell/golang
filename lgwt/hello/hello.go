@@ -2,9 +2,11 @@ package main
 
 import "fmt"
 
-const spanish = "Spanish"
-const french = "French"
-const english = "English"
+const (
+	spanish = "Spanish"
+	french  = "French"
+	english = "English"
+)
 
 var greetingLookup = map[string]string{
 	spanish: "Hola, ",

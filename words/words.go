@@ -11,8 +11,6 @@ import (
 // Words represents a collection of words
 type Words []string
 
-
-
 // FromFile reads a file containing a words and returns a Words.
 // Each line in the file is treated as a word, with leading and trailing
 // whitespace trimmed. Lines that are empty or start with a '#' character
@@ -24,7 +22,6 @@ type Words []string
 // Returns:
 //   - Words: a collection of words read from the file.
 //   - error: An error if the file cannot be opened or read.
-//
 func FromFile(filename string) (Words, error) {
 	file, err := os.Open(filename)
 	if err != nil {
