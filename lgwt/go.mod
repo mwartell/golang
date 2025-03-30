@@ -1,3 +1,3 @@
-module msw/lgwt/structs
+module lgwt
 
 go 1.24.1
