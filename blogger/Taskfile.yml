@@ -1,0 +1,18 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  default:
+    cmds:
+      - task --list
+  blogger:
+    desc: create the ollama personality model "blogger"
+    cmds:
+      - ollama create blogger -f blogger.modelfile
+  posts:
+    deps: [blogger]
+    desc: generate a collection of posts on a topics list
+    cmds:
+      - mkdir -p posts
+      - sh blogger.sh topics.txt
