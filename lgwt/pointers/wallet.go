@@ -5,10 +5,12 @@ import (
 	"fmt"
 )
 
-type Bitcoin int
-type Wallet struct {
-	balance Bitcoin
-}
+type (
+	Bitcoin int
+	Wallet  struct {
+		balance Bitcoin
+	}
+)
 
 func (w *Wallet) Deposit(amount Bitcoin) {
 	w.balance += amount

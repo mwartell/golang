@@ -7,24 +7,22 @@ import (
 type Population []string
 
 type Experiment struct {
-	target string
-	population Population
-	generation int
+	target       string
+	population   Population
+	generation   int
 	mutationRate float64
-	charset Charset
+	charset      Charset
 }
-
-
 
 func NewExperiment(target string, size int, rate float64, charset Charset) (*Experiment, error) {
 	exp := &Experiment{
-		target: target,
-		population: newPool(size, len(target), charset),
-		generation: 0,
+		target:       target,
+		population:   newPool(size, len(target), charset),
+		generation:   0,
 		mutationRate: rate,
-		charset: charset,
+		charset:      charset,
 	}
-	if !exp.validateCharset(){
+	if !exp.validateCharset() {
 		return nil, fmt.Errorf("incomplete charset: %s", charset)
 	}
 	return exp, nil

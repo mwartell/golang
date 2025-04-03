@@ -27,7 +27,6 @@ func BenchmarkMutantChild(b *testing.B) {
 	}
 }
 
-
 func BenchmarkRatchetSolve(b *testing.B) {
 	var generations int
 
@@ -40,7 +39,6 @@ func BenchmarkRatchetSolve(b *testing.B) {
 	}
 	b.Logf("Generations: %d\n", generations)
 }
-
 
 func BenchmarkPoolSolve(b *testing.B) {
 	exp, err := NewExperiment("methinks it is like a weasel", 100, 0.05, CharsetDefault)

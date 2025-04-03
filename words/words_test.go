@@ -23,17 +23,17 @@ func TestWordList(t *testing.T) {
 	}
 
 	presences := map[string]bool{
-		"apple":  true,
-		"banana": true,
-		"cherry": true,
-		"date":   false,
-		"comment": false,
+		"apple":     true,
+		"banana":    true,
+		"cherry":    true,
+		"date":      false,
+		"comment":   false,
 		"# comment": false,
 	}
 	for target, expected := range presences {
 		presence := map[bool]string{true: "present", false: "absent"}[expected]
 		if wl.Contains(target) != expected {
-				t.Fatalf("Expected %v to be %v", target, presence)
+			t.Fatalf("Expected %v to be %v", target, presence)
 		}
 	}
 
@@ -62,14 +62,12 @@ func BenchmarkFromFile(b *testing.B) {
 		b.Fatalf("Failed to download wordlist: %v", err)
 	}
 
-
 	for b.Loop() {
 		_, err := FromFile(filename)
 		if err != nil {
 			b.Fatalf("Failed to load wordlist: %v", err)
 		}
 	}
-
 }
 
 func ExampleWords() {

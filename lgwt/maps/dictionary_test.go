@@ -77,6 +77,7 @@ func TestDelete(t *testing.T) {
 		assertError(t, err, ErrWordDoesNotExist)
 	})
 }
+
 func assertStrings(t testing.TB, got, want string) {
 	t.Helper()
 	if got != want {
