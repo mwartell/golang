@@ -7,7 +7,7 @@ import (
 	"testing"
 	"testing/fstest"
 
-	blogposts "msw/lgwt/blogposts"
+	blogposts "lgwt/blogposts"
 )
 
 type StubFailingFS struct{}

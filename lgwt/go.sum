@@ -1,2 +1,2 @@
-github.com/quii/learn-go-with-tests v0.0.0-20250331145345-6f83067d546f h1:khIPZ+gctFqeu8t6kJsBG4kGoLOKIsiAqAzC4DnUO58=
-github.com/quii/learn-go-with-tests v0.0.0-20250331145345-6f83067d546f/go.mod h1:BDeA6+fYG6w8kz8Fg9wKXgGwSCAvwljF7pAuLtXonfI=
+github.com/approvals/go-approval-tests v1.2.1 h1:VzrfIgbfmQ8EVGMQQ2Vz08RZVcXUaNeXPSnORID+LCg=
+github.com/approvals/go-approval-tests v1.2.1/go.mod h1:i7AlHlLqLyxTby+MnSFgxkObjFlsywI46fnOitjMBiU=
